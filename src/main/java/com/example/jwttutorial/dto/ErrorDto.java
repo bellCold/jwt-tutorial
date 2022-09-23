@@ -9,7 +9,7 @@ import java.util.List;
 public class ErrorDto {
     private final int status;
     private final String message;
-    private List<FieldError> fieldErrors = new ArrayList<>();
+    private final List<FieldError> fieldErrors = new ArrayList<>();
 
     public ErrorDto(int status, String message) {
         this.status = status;
