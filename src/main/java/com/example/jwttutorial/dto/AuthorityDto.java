@@ -1,6 +1,7 @@
 package com.example.jwttutorial.dto;
 
 
+import com.example.jwttutorial.entity.UserRole;
 import lombok.*;
 
 @Getter
@@ -9,5 +10,5 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AuthorityDto {
-    private String authorityName;
+    private UserRole authorityName;
 }

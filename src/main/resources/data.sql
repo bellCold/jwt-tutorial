@@ -5,5 +5,5 @@ insert into AUTHORITY (authority_name) values ('ROLE_USER');
 insert into AUTHORITY (authority_name) values ('ROLE_ADMIN');
 
 insert into USER_AUTHORITY (user_id, authority_name) values (1, 'ROLE_USER');
-insert into USER_AUTHORITY (user_id, authority_name) values (2, 'ROLE_USER');
 insert into USER_AUTHORITY (user_id, authority_name) values (1, 'ROLE_ADMIN');
+insert into USER_AUTHORITY (user_id, authority_name) values (2, 'ROLE_USER');

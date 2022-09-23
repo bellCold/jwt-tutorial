@@ -3,7 +3,9 @@ package com.example.jwttutorial.service;
 import com.example.jwttutorial.dto.UserDto;
 import com.example.jwttutorial.entity.Authority;
 import com.example.jwttutorial.entity.User;
+import com.example.jwttutorial.entity.UserRole;
 import com.example.jwttutorial.exception.DuplicateMemberException;
+import com.example.jwttutorial.exception.ErrorMessage;
 import com.example.jwttutorial.exception.NotFoundMemberException;
 import com.example.jwttutorial.repository.UserRepository;
 import com.example.jwttutorial.util.SecurityUtil;
@@ -14,6 +16,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
 
+import static com.example.jwttutorial.entity.UserRole.*;
+import static com.example.jwttutorial.exception.ErrorMessage.*;
+
 @Service
 @RequiredArgsConstructor
 public class UserService {
@@ -21,13 +26,13 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
 
     @Transactional
-    public UserDto signup(UserDto userDto) {
+    public UserDto signup(UserDto userDto) throws DuplicateMemberException {
         if (userRepository.findOneWithAuthoritiesByUsername(userDto.getUsername()).orElse(null) != null) {
-            throw new DuplicateMemberException("이미 가입되어 있는 유저입니다.");
+            throw new DuplicateMemberException(ALREADY_EXIST_USER);
         }
 
         Authority authority = Authority.builder()
-                .authorityName("ROLE_USER")
+                .authorityName(ROLE_USER)
                 .build();
 
         User user = User.builder()
